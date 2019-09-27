@@ -1,0 +1,174 @@
+/* Bordered form */
+form {
+  justify-content:center;
+  align-content:center;
+}
+body{
+  justify-content:center;
+  align-content:center;
+  background: url("../src/Assets/images/light-blue.jpg"); 
+  background-repeat: no-repeat;
+  background-size: 1320px 1000px;
+}
+.container{
+  display: 'flex';
+  flex-wrap:'wrap';
+  align-content: center;
+  justify-content: center;
+}
+/* .textField{
+  margin-left: "theme.spacing.unit";
+  margin-right: "theme.spacing.unit";
+} */
+.dense{
+  margin-top: 16px;
+}
+.menu{
+  width: 300px;
+}
+/* .button {
+  margin: "theme.spacing.unit";
+} */
+.input {
+  display: "none";
+}
+input[type=email] {
+  width: 280px;
+  height: 90%;
+  padding: 22px 150px;
+}
+input[type=textfield] {
+  width: 280px;
+  height: 90%;
+  padding: 22px 150px;
+}
+input[type=text],input[type=password] {
+  width: 200px;
+  height: 90%;
+  padding: 22px 35px;
+  margin-left: "300px";
+  margin-right: "370px"
+}
+input[type=submit]{
+  width:200px;
+  height: 90%;
+  padding: 20px 100px;
+}
+.success {
+  background-color: green,
+}
+.error {
+  background-color: palegreen,
+}
+.info {
+  background-color: palegoldenrod,
+}
+.warning {
+  background-color: aquamarine,
+}
+.icon {
+  font-size: 20,
+}
+/* .iconVariant {
+  margin-right: "theme.spacing.unit",
+} */
+.message {
+  align-items  : center,
+}
+/* .margin {
+  margin: "theme.spacing.unit",
+} */
+.wrapper{
+height: 400px;
+width: 450px;
+flex-direction: column;
+padding: 20px 40px;
+border-radius: 10px;
+justify-content: center;
+align-content: center;
+background-color: brown;
+}
+/* form{
+align-content: center;
+display: flex;
+justify-content: space-between;
+} */
+#button{
+  margin-left: 40%;
+  margin-right: 40%;
+  display: flex;
+  justify-content: space-between;
+}
+#button1{
+  margin-left: 28%;
+  margin-right: 30%;
+  display: flex;
+  justify-content: space-between;
+}
+.root {
+  flex-grow: 1;
+}
+.grow {
+  flex-grow: 1;
+}
+.grow {
+  align-self: flex-end;
+}
+#send{
+  margin-top: -5%;
+  margin-left: 78.5%;
+}
+.msgdisplay {
+  margin-top: -30.5%;
+  margin-left: 34%;
+  width: 100%;
+  border:2px solid rgb(45, 11, 238);
+  width: 826px;
+  height: 455px;
+  overflow: auto;
+}
+.dashboard {
+  display: flex;
+  margin-top: -1%;
+  margin-left: 3%;
+  border: 2px solid rgb(45, 11, 238);
+  width: 390px;
+  margin:normal;
+  height: 347px;
+}
+.containerButton {
+  margin-top: 0%;
+  margin-left: 34%;
+  margin-right: 30%;
+  width: 580px;
+  display: flex;
+  margin:normal;
+  text-decoration-color:black
+}
+#buttn{
+  margin-left: 40%;
+  margin-right: 40%;
+  display: flex;
+  justify-content: space-between;
+}
+#buttn1{
+  margin-left: 28%;
+  margin-right: 30%;
+  display: flex;
+  justify-content: space-between;
+}
+.sender-div{
+  margin-left: 620px;
+  background-color: blueviolet;
+  border-radius: 20px;
+  width: 190px;
+  padding: 10px;
+  margin-bottom: 10px
+}
+.receiver-div{
+  background-color: red ;
+  border-radius: 20px;
+  width: 190px;
+  padding: 10px;
+  margin-bottom: 10px
+}
