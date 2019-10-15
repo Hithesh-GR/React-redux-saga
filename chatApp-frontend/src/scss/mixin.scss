@@ -1,0 +1,18 @@
+/****************************************************************************
+ * Purpose : To reuse elements.
+ * @description
+ * @file : mixin.scss
+ * @author : Hithesh G R
+ * @version : 1.0
+ * @since : 10/10/2019
+ ****************************************************************************/
+@mixin flexCenter {
+    display: flex;
+}
+
+@mixin fontStyle {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-style: italic;
+    font-weight: bolder;
+    font-size: 2ch
+}

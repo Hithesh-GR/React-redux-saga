@@ -6,10 +6,9 @@
  *  @since          : 02-02-2019
  ******************************************************************************/
 import React from "react";
-import Snackbar from '@material-ui/core/Snackbar';
-import { resetPassword } from "../Services/userServices";
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
+import { Snackbar, TextField, Button, Card } from '@material-ui/core';
+import { resetPassword } from "../../Services/userServices";
+import '../../scss/main.scss';
 export default class ResetPassword extends React.Component {
     constructor(props) {
         super(props);
@@ -104,37 +103,34 @@ export default class ResetPassword extends React.Component {
     };
     render() {
         return (
-            <div>
-                <center>
+            <div className="container">
+                <Card className="containerCard">
+                    <div>
+                        <span id="heading">Web Chat</span>
+                    </div>
                     <div>
                         <TextField
-                            label="New Password*"
+                            required
+                            label="New Password"
                             type="password"
                             value={this.state.Password}
                             onChange={this.handlePasswordChange}
                             margin="normal"
-                            variant="filled"
+                            variant="outlined"
                         />
                     </div>
                     <div>
                         <TextField
-                            label="Confirm New Password*"
+                            required
+                            label="Confirm New Password"
                             type="password"
                             value={this.state.newPassword}
                             onChange={this.handlenewPasswordChange}
                             margin="normal"
-                            variant="filled"
+                            variant="outlined"
                         />
                     </div>
-                    <div id="button" >
-                        <Button
-                            variant="contained"
-                            color="secondary"
-                            type="submit"
-                            title="click on submit"
-                            onClick={this.handleSubmit}>
-                            submit
-                                </Button>
+                    <div className="Button">
                         <Button
                             variant="contained"
                             color="primary"
@@ -142,32 +138,39 @@ export default class ResetPassword extends React.Component {
                             title="click on reset"
                             onClick={this.resetForm}>
                             reset
-                            </Button>
-                    </div>
-                </center>
-                <Snackbar
-                    anchorOrigin={{
-                        vertical: 'bottom',
-                        horizontal: 'left',
-                    }}
-                    open={this.state.openSnackBar}
-                    autoHideDuration={6000}
-                    onClose={this.handleSnackClose}
-                    variant="error"
-                    ContentProps={{
-                        'aria-describedby': 'message-id',
-                    }}
-                    message={<span id="message-id"> {this.state.snackBarMessage} </span>}
-                    action={[
-                        <div key="undo">
-                            <Button key="undo" color="primary" size="small" onClick={this.handleSnackClose}>
-                                UNDO
                         </Button>
-                        </div>
-                    ]}
-                />
+                        <Button
+                            variant="contained"
+                            color="secondary"
+                            type="submit"
+                            title="click on submit"
+                            onClick={this.handleSubmit}>
+                            submit
+                        </Button>
+                    </div>
+                    <Snackbar
+                        anchorOrigin={{
+                            vertical: 'bottom',
+                            horizontal: 'left',
+                        }}
+                        open={this.state.openSnackBar}
+                        autoHideDuration={6000}
+                        onClose={this.handleSnackClose}
+                        variant="error"
+                        ContentProps={{
+                            'aria-describedby': 'message-id',
+                        }}
+                        message={<span id="heading"> {this.state.snackBarMessage} </span>}
+                        action={[
+                            <div key="undo">
+                                <Button key="undo" color="primary" size="small" onClick={this.handleSnackClose}>
+                                    UNDO
+                        </Button>
+                            </div>
+                        ]}
+                    />
+                </Card>
             </div>
         );
     }
 }
-export { resetPassword };

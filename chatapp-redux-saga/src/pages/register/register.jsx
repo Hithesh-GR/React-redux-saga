@@ -8,7 +8,7 @@
 import React from "react";
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { userRegister } from "../Services/userServices";
+// import { userRegister } from "../Services/userServices";
 import Snackbar from '@material-ui/core/Snackbar';
 export default class registration extends React.Component {
     constructor(props) {
@@ -61,73 +61,73 @@ export default class registration extends React.Component {
     /**
      * it will submit the registration page, after all field are filled and checks the all the conditions
      */
-    handleSubmit = event => {
-        event.preventDefault();
-        if (this.state.firstName === "") {
-            this.setState({
-                openSnackBar: true,
-                snackBarMessage: "firstName cannot be empty..!"
-            });
-        } else if (this.state.lastName === "") {
-            this.setState({
-                openSnackBar: true,
-                snackBarMessage: "lastName cannot be empty..!"
-            });
-        } else if (this.state.Email === "") {
-            this.setState({
-                openSnackBar: true,
-                snackBarMessage: "Email cannot be empty..!"
-            });
-        } else if (!/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/.test(this.state.Email)) {
-            this.setState({
-                openSnackBar: true,
-                snackBarMessage: "Invalid Email..!"
-            });
-        } else if (this.state.Password === "") {
-            this.setState({
-                openSnackBar: true,
-                snackBarMessage: "Password cannot be empty..!"
-            });
-        } else if (this.state.Password.length < 6) {
-            this.setState({
-                openSnackBar: true,
-                snackBarMessage: "Password must be of atleast 6 characters long..!"
-            });
-        } else if (this.state.confirmPassword === "") {
-            this.setState({
-                openSnackBar: true,
-                snackBarMessage: "Confirm Password cannot be empty..!"
-            });
-        } else if (this.state.Password !== this.state.confirmPassword) {
-            this.setState({
-                openSnackBar: true,
-                snackBarMessage: "Password and confirm Password must be same..!"
-            });
-        } else {
-            var data = {
-                FirstName: this.state.firstName,
-                LastName: this.state.lastName,
-                Email: this.state.Email,
-                Password: this.state.Password
-            }
-            userRegister(data)
-                .then((response) => {
-                    console.log(response);
-                    this.setState({
-                        openSnackBar: true,
-                        snackBarMessage: "Registered Successfully!!"
-                    });
-                    this.props.props.history.push("/login");
-                })
-                .catch((err) => {
-                    console.log(err);
-                    this.setState({
-                        openSnackBar: true,
-                        snackBarMessage: "User with email id already exists!!"
-                    });
-                });
-        }
-    };
+    // handleSubmit = event => {
+    //     event.preventDefault();
+    //     if (this.state.firstName === "") {
+    //         this.setState({
+    //             openSnackBar: true,
+    //             snackBarMessage: "firstName cannot be empty..!"
+    //         });
+    //     } else if (this.state.lastName === "") {
+    //         this.setState({
+    //             openSnackBar: true,
+    //             snackBarMessage: "lastName cannot be empty..!"
+    //         });
+    //     } else if (this.state.Email === "") {
+    //         this.setState({
+    //             openSnackBar: true,
+    //             snackBarMessage: "Email cannot be empty..!"
+    //         });
+    //     } else if (!/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/.test(this.state.Email)) {
+    //         this.setState({
+    //             openSnackBar: true,
+    //             snackBarMessage: "Invalid Email..!"
+    //         });
+    //     } else if (this.state.Password === "") {
+    //         this.setState({
+    //             openSnackBar: true,
+    //             snackBarMessage: "Password cannot be empty..!"
+    //         });
+    //     } else if (this.state.Password.length < 6) {
+    //         this.setState({
+    //             openSnackBar: true,
+    //             snackBarMessage: "Password must be of atleast 6 characters long..!"
+    //         });
+    //     } else if (this.state.confirmPassword === "") {
+    //         this.setState({
+    //             openSnackBar: true,
+    //             snackBarMessage: "Confirm Password cannot be empty..!"
+    //         });
+    //     } else if (this.state.Password !== this.state.confirmPassword) {
+    //         this.setState({
+    //             openSnackBar: true,
+    //             snackBarMessage: "Password and confirm Password must be same..!"
+    //         });
+    //     } else {
+    //         var data = {
+    //             FirstName: this.state.firstName,
+    //             LastName: this.state.lastName,
+    //             Email: this.state.Email,
+    //             Password: this.state.Password
+    //         }
+    //         userRegister(data)
+    //             .then((response) => {
+    //                 console.log(response);
+    //                 this.setState({
+    //                     openSnackBar: true,
+    //                     snackBarMessage: "Registered Successfully!!"
+    //                 });
+    //                 this.props.history.push("/login");
+    //             })
+    //             .catch((err) => {
+    //                 console.log(err);
+    //                 this.setState({
+    //                     openSnackBar: true,
+    //                     snackBarMessage: "User with email id already exists!!"
+    //                 });
+    //             });
+    //     }
+    // };
     /**
      * it will resets the page or form, if we typed wrong 
      */
@@ -139,7 +139,7 @@ export default class registration extends React.Component {
      */
     loginclick = e => {
         e.preventDefault();
-        this.props.props.history.push("/login");
+        this.props.history.push("/login");
     };
     /**
      * use to auto close snackBar
@@ -264,4 +264,3 @@ export default class registration extends React.Component {
         );
     }
 }
-export { registration };

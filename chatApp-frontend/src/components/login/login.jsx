@@ -6,11 +6,25 @@
  *  @since          : 02-02-2019
  *********************************************************************************/
 import React from "react";
-import { userLogin } from "../Services/userServices";
+import { userLogin } from "../../Services/userServices";
 import Snackbar from '@material-ui/core/Snackbar';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-//import Input from '../components/input'; 
+import Card from '@material-ui/core/Card';
+import { createMuiTheme, MuiThemeProvider } from '@material-ui/core';
+import '../../scss/main.scss';
+const theme = createMuiTheme({
+    overrides: {
+        MuiCard: {
+            root: {
+                overflow: "visible"
+            },
+        }
+    },
+    typography: {
+        useNextVariants: true,
+    },
+})
 export default class login extends React.Component {
     constructor(props) {
         super(props);
@@ -74,7 +88,7 @@ export default class login extends React.Component {
                         snackBarMessage: "Login Successfull!!"
                     });
                     localStorage.setItem('Sender', this.state.Username);
-                    this.props.props.history.push('/dashBoard');
+                    this.props.history.push('/dashBoard');
                 })
                 .catch((err) => {
                     console.log(err);
@@ -90,14 +104,14 @@ export default class login extends React.Component {
      */
     forgotPasswordPage = e => {
         e.preventDefault();
-        this.props.props.history.push('/forgotPassword');
+        this.props.history.push('/forgotPassword');
     };
     /**
      * redirect to registerpage
      */
     registrationclick = e => {
         e.preventDefault();
-        this.props.props.history.push('/registration');
+        this.props.history.push('/registration');
     };
     /**
      * use to auto close snackBar
@@ -110,89 +124,90 @@ export default class login extends React.Component {
 
     render() {
         return (
-            <div>
-                <center>
+            <MuiThemeProvider theme={theme}>
+            <div className="container">
+                <Card className="containerCard">
                     <div>
-                        {/* <Input handleChange={this.handleUsernameChange} label="Email*" type="text" autoComplete="Username"
-                        margin="normal"
-                        variant="filled"/>
-                        <Input handleChange={this.handlePasswordChange} label="Password*" type="password"          autoComplete="Password"
-                        margin="normal"
-                        variant="filled"/> */}
+                        <span id="heading">Web Chat</span>
+                    </div>
+                    <div>
                         <TextField
-                            label="Email*"
+                            required
+                            label="Email"
                             type="text"
                             name="Username"
                             value={this.state.Username}
                             onChange={this.handleUsernameChange}
-                            autoComplete="Username"
+                            // autoComplete="Username"
                             margin="normal"
-                            variant="filled"
+                            variant="outlined"
                         />
                     </div>
                     <div>
                         <TextField
-                            label="Password*"
+                            required
+                            label="Password"
                             type="password"
                             value={this.state.Password}
                             onChange={this.handlePasswordChange}
-                            autoComplete="Password"
+                            // autoComplete="Password"
                             margin="normal"
-                            variant="filled"
+                            variant="outlined"
                         />
                     </div>
-                    <div id="button">
+                    <div className="Button">
                         <Button
-                            variant="contained"
+                            variant="outlined"
                             color="secondary"
                             type="submit"
-                            title="click on Signin"
-                            onClick={this.handleSubmit}>
-                            Signin
-                                </Button>
+                            title="click on Registration"
+                            onClick={this.registrationclick}>
+                            SignUp
+                        </Button>
                         <Button
                             variant="contained"
                             color="primary"
                             type="submit"
-                            title="click on Registration"
-                            onClick={this.registrationclick}>
-                            Registration
-                                </Button>
+                            title="click on Signin"
+                            onClick={this.handleSubmit}>
+                            SignIn
+                        </Button>
                     </div>
                     <div>
-                        <Button variant="outlined"
+                        <Button
+                            variant="outlined"
                             color="primary"
                             type="submit"
                             title="click on forgotPassword"
                             id="signinButton"
                             onClick={this.forgotPasswordPage}>
                             forgot Password?
-                                </Button>
+                    </Button>
                     </div>
-                </center>
-                <Snackbar
-                    anchorOrigin={{
-                        vertical: 'bottom',
-                        horizontal: 'left',
-                    }}
-                    open={this.state.openSnackBar}
-                    autoHideDuration={6000}
-                    onClose={this.handleSnackClose}
-                    variant="error"
-                    ContentProps={{
-                        'aria-describedby': 'message-id',
-                    }}
-                    message={<span id="message-id"> {this.state.snackBarMessage} </span>}
-                    action={[
-                        <div key="undo">
-                            <Button key="undo" color="primary" size="small" onClick={this.handleSnackClose}>
-                                UNDO
+                    <Snackbar
+                        anchorOrigin={{
+                            vertical: 'bottom',
+                            horizontal: 'left',
+                        }}
+                        open={this.state.openSnackBar}
+                        autoHideDuration={6000}
+                        onClose={this.handleSnackClose}
+                        variant="error"
+                        ContentProps={{
+                            'aria-describedby': 'message-id',
+                        }}
+                        message={<span id="heading"> {this.state.snackBarMessage} </span>}
+                        action={[
+                            <div key="undo">
+                                <Button key="undo" color="primary" size="small" onClick={this.handleSnackClose}>
+                                    UNDO
                         </Button>
-                        </div>
-                    ]}
-                />
+                            </div>
+                        ]}
+                    />
+                </Card>
             </div>
+            </MuiThemeProvider>
         );
     }
 }
-export { login };

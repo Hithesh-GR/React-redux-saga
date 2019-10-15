@@ -9,9 +9,9 @@ import React from "react";
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
-import { chatServices, userChatArray } from "../Services/chatServices";
+import { chatServices, userChatArray } from "../../Services/chatServices";
 import AppBar from '@material-ui/core/AppBar';
-import "../App.css";
+import '../../scss/main.scss';
 /**
  * to import socket.io here and set the server port number
  */
@@ -111,7 +111,7 @@ export default class dashBoard extends React.Component {
      */
     handleLogout = event => {
         event.preventDefault();
-        this.props.props.history.push("/login");
+        this.props.history.push("/login");
     }
     render() {
 

@@ -7,10 +7,9 @@
  *  @since          : 02-02-2019
  ******************************************************************************/
 import React from "react";
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import Snackbar from '@material-ui/core/Snackbar';
-import { forgotPassword } from "../Services/userServices";
+import { Card, TextField, Button, Snackbar } from '@material-ui/core';
+import { forgotPassword } from "../../Services/userServices";
+import '../../scss/main.scss';
 export default class ForgotPassword extends React.Component {
     constructor(props) {
         super(props);
@@ -54,7 +53,7 @@ export default class ForgotPassword extends React.Component {
      */
     register = e => {
         e.preventDefault();
-        this.props.props.history.push('/registration');
+        this.props.history.push('/registration');
     };
     /**
      * use to auto close snackBar
@@ -66,21 +65,32 @@ export default class ForgotPassword extends React.Component {
     }
     render() {
         return (
-            <div>
-                <form align="center">
+            <div className="container">
+                <Card className="containerCard">
+                    <div>
+                        <span id="heading">Web Chat</span>
+                    </div>
                     <div >
                         <TextField
-                            label="Enter your email*"
+                            required
+                            label="Enter your email"
                             name="email"
-                            align="center"
                             value={this.state.userName}
                             onChange={this.handleuserNameChange}
                             autoComplete="Username"
                             margin="normal"
-                            variant="filled"
+                            variant="outlined"
                         />
                     </div>
-                    <div id="button">
+                    <div className="Button">
+                        <Button variant="contained"
+                            color="primary"
+                            type="submit"
+                            title="click on Create Account"
+                            id="signinButton"
+                            onClick={this.register}>
+                            SignUp
+                            </Button>
                         <Button
                             variant="contained"
                             color="secondary"
@@ -89,38 +99,30 @@ export default class ForgotPassword extends React.Component {
                             id="signinButton"
                             onClick={this.handleSubmit}>
                             Submit
-                            </Button>
-                        <Button variant="contained"
-                            color="primary"
-                            type="submit"
-                            title="click on Create Account"
-                            id="signinButton"
-                            onClick={this.register}>
-                            Create Account
-                            </Button>
-                    </div>
-                </form>
-                <Snackbar
-                    anchorOrigin={{
-                        vertical: 'bottom',
-                        horizontal: 'left',
-                    }}
-                    open={this.state.openSnackBar}
-                    autoHideDuration={6000}
-                    onClose={this.handleSnackClose}
-                    variant="error"
-                    ContentProps={{
-                        'aria-describedby': 'message-id',
-                    }}
-                    message={<span id="message-id"> {this.state.snackBarMessage} </span>}
-                    action={[
-                        <div key="undo">
-                            <Button key="undo" color="primary" size="small" onClick={this.handleSnackClose}>
-                                UNDO
                         </Button>
-                        </div>
-                    ]}
-                />
+                    </div>
+                    <Snackbar
+                        anchorOrigin={{
+                            vertical: 'bottom',
+                            horizontal: 'left',
+                        }}
+                        open={this.state.openSnackBar}
+                        autoHideDuration={6000}
+                        onClose={this.handleSnackClose}
+                        variant="error"
+                        ContentProps={{
+                            'aria-describedby': 'message-id',
+                        }}
+                        message={<span id="heading"> {this.state.snackBarMessage} </span>}
+                        action={[
+                            <div key="undo">
+                                <Button key="undo" color="primary" size="small" onClick={this.handleSnackClose}>
+                                    UNDO
+                        </Button>
+                            </div>
+                        ]}
+                    />
+                </Card>
             </div>
         );
     }

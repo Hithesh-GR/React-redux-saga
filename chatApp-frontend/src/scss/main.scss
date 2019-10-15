@@ -1,0 +1,61 @@
+/****************************************************************************
+ * Purpose : To reuse css variables.
+ * @description
+ * @file : main.scss
+ * @author : Hithesh G R
+ * @version : 1.0
+ * @since : 10/10/2019
+ ****************************************************************************/
+// can also be relative import
+@import './color+image.scss';
+@import './variable.scss';
+@import './mixin.scss';
+
+.container {
+  @include flexCenter();
+  @include fontStyle();
+  height: 100vh;
+  align-items: $center;
+  justify-content: $center;
+  background: $image;
+  // background-repeat: no-repeat;
+}
+
+.containerCard{
+  @include flexCenter();
+  @include fontStyle();
+  height: 90vh;
+  width: 70vh;
+  flex-direction: column;
+  align-items: $center;
+  justify-content: $center;
+  background: $image;
+}
+
+#heading{
+  @include fontStyle();
+  color: $redColor;
+}
+
+.Button{
+  @include flexCenter();
+  justify-content: $spaceBetween;
+  flex-wrap: wrap;
+  width: 60%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+// h1 {
+//   @include fontStyle();
+//   color: $primaryColor
+// }
