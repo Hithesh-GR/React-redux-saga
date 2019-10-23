@@ -6,9 +6,37 @@
  *  @since          : 02-02-2019
  ******************************************************************************/
 import React from "react";
-import { Snackbar, TextField, Button, Card } from '@material-ui/core';
 import { resetPassword } from "../../Services/userServices";
+import { createMuiTheme, MuiThemeProvider, Button, TextField, Card, Snackbar } from '@material-ui/core';
 import '../../scss/main.scss';
+const theme = createMuiTheme({
+    overrides: {
+        MuiInputBase: {
+            root: {
+                color: "darkgray",
+                fontFamily: "none"
+            },
+            input: {
+                color: "darkgray",
+                fontFamily: "none"
+            }
+        },
+        MuiFormLabel: {
+            root: {
+                color: "darkgray",
+                fontFamily: "none"
+            }
+        },
+        MuiButton: {
+            root: {
+                textTransform: "none"
+            }
+        }
+    },
+    typography: {
+        useNextVariants: true,
+    },
+})
 export default class ResetPassword extends React.Component {
     constructor(props) {
         super(props);
@@ -103,74 +131,78 @@ export default class ResetPassword extends React.Component {
     };
     render() {
         return (
-            <div className="container">
-                <Card className="containerCard">
-                    <div>
-                        <span id="heading">Web Chat</span>
-                    </div>
-                    <div>
-                        <TextField
-                            required
-                            label="New Password"
-                            type="password"
-                            value={this.state.Password}
-                            onChange={this.handlePasswordChange}
-                            margin="normal"
-                            variant="outlined"
+            <MuiThemeProvider theme={theme}>
+                <div className="container">
+                    <Card className="containerCard">
+                        <div>
+                            <marquee behavior="scroll" direction="up" scrollamount="1">
+                                <span id="heading">Web Chat</span>
+                            </marquee>
+                        </div>
+                        <div>
+                            <TextField
+                                required
+                                label="New Password"
+                                type="password"
+                                value={this.state.Password}
+                                onChange={this.handlePasswordChange}
+                                margin="normal"
+                                variant="outlined"
+                            />
+                        </div>
+                        <div>
+                            <TextField
+                                required
+                                label="Confirm New Password"
+                                type="password"
+                                value={this.state.newPassword}
+                                onChange={this.handlenewPasswordChange}
+                                margin="normal"
+                                variant="outlined"
+                            />
+                        </div>
+                        <div className="Button">
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                type="reset"
+                                title="click on reset"
+                                onClick={this.resetForm}>
+                                Reset
+                        </Button>
+                            <Button
+                                variant="contained"
+                                color="secondary"
+                                type="submit"
+                                title="click on submit"
+                                onClick={this.handleSubmit}>
+                                Submit
+                        </Button>
+                        </div>
+                        <Snackbar
+                            anchorOrigin={{
+                                vertical: 'bottom',
+                                horizontal: 'left',
+                            }}
+                            open={this.state.openSnackBar}
+                            autoHideDuration={6000}
+                            onClose={this.handleSnackClose}
+                            variant="error"
+                            ContentProps={{
+                                'aria-describedby': 'message-id',
+                            }}
+                            message={<span id="heading"> {this.state.snackBarMessage} </span>}
+                            action={[
+                                <div key="undo">
+                                    <Button key="undo" color="primary" size="small" onClick={this.handleSnackClose}>
+                                        UNDO
+                        </Button>
+                                </div>
+                            ]}
                         />
-                    </div>
-                    <div>
-                        <TextField
-                            required
-                            label="Confirm New Password"
-                            type="password"
-                            value={this.state.newPassword}
-                            onChange={this.handlenewPasswordChange}
-                            margin="normal"
-                            variant="outlined"
-                        />
-                    </div>
-                    <div className="Button">
-                        <Button
-                            variant="contained"
-                            color="primary"
-                            type="reset"
-                            title="click on reset"
-                            onClick={this.resetForm}>
-                            reset
-                        </Button>
-                        <Button
-                            variant="contained"
-                            color="secondary"
-                            type="submit"
-                            title="click on submit"
-                            onClick={this.handleSubmit}>
-                            submit
-                        </Button>
-                    </div>
-                    <Snackbar
-                        anchorOrigin={{
-                            vertical: 'bottom',
-                            horizontal: 'left',
-                        }}
-                        open={this.state.openSnackBar}
-                        autoHideDuration={6000}
-                        onClose={this.handleSnackClose}
-                        variant="error"
-                        ContentProps={{
-                            'aria-describedby': 'message-id',
-                        }}
-                        message={<span id="heading"> {this.state.snackBarMessage} </span>}
-                        action={[
-                            <div key="undo">
-                                <Button key="undo" color="primary" size="small" onClick={this.handleSnackClose}>
-                                    UNDO
-                        </Button>
-                            </div>
-                        ]}
-                    />
-                </Card>
-            </div>
+                    </Card>
+                </div>
+            </MuiThemeProvider>
         );
     }
 }

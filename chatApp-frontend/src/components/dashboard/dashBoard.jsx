@@ -6,16 +6,51 @@
  *  @since          : 02-02-2019
  ************************************************************************************/
 import React from "react";
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import MenuItem from '@material-ui/core/MenuItem';
+import io from 'socket.io-client';
 import { chatServices, userChatArray } from "../../Services/chatServices";
-import AppBar from '@material-ui/core/AppBar';
+import { createMuiTheme, MuiThemeProvider, Card, Tooltip, AppBar, MenuItem, IconButton } from '@material-ui/core';
+import { Avatar, TextField } from '@material-ui/core';
+import SendIcon from '@material-ui/icons/Send';
 import '../../scss/main.scss';
+import './dashBoard.scss';
+const theme = createMuiTheme({
+    overrides: {
+        MuiAppBar: {
+            colorPrimary: {
+                color: "#fff",
+                backgroundColor: "ivory"
+            },
+            root: {
+                height: "fit-content"
+            }
+        },
+        MuiButton: {
+            root: {
+                textTransform: "none"
+            },
+            containedPrimary: {
+                color: "black",
+                backgroundColor: "indianred"
+            }
+        },
+        MuiMenuItem: {
+            root: {
+                // overflow: "auto",
+                fontSize: "10px"
+            },
+            gutters: {
+                paddingLeft: "4px",
+                paddingRight: "unset"
+            }
+        }
+    },
+    typography: {
+        useNextVariants: true,
+    },
+})
 /**
  * to import socket.io here and set the server port number
  */
-import io from 'socket.io-client';
 const socket = io.connect('http://localhost:4000');
 export default class dashBoard extends React.Component {
     constructor(props) {
@@ -28,6 +63,9 @@ export default class dashBoard extends React.Component {
             Receiver: '',
             Sender: '',
             msg: [],
+            anchorEl: null,
+            open: false,
+            placement: null
         }
     }
     componentDidMount() {
@@ -113,28 +151,60 @@ export default class dashBoard extends React.Component {
         event.preventDefault();
         this.props.history.push("/login");
     }
+    handleEnter = (event) => {
+        try {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                this.handleSubmit(event);
+            }
+        } catch (err) {
+            console.log("error at handleEnter in login");
+        }
+    };
     render() {
-
-
+        const msgdis = this.state.msg.map((key) => {
+            console.log("key.senderId === this.state.senderId", key.senderId === this.state.senderId);
+            return (
+                <div>
+                    {key.senderId === this.state.Sender ?
+                        (
+                            <div className="sender-div">
+                                {/*<div id="heading">{key.senderId}:</div>*/}
+                                <div id="heading">{key.message}</div>
+                            </div>
+                        )
+                        :
+                        (
+                            <div className="receiver-div">
+                                {/*<div id="heading">{key.senderId}:</div>*/}
+                                <div>{key.message}</div>
+                            </div>
+                        )
+                    }
+                </div>
+            )
+        })
         const msg = this.state.MsgArray.map((key) => {
             return (
                 <div >
-                    {key.senderId === localStorage.getItem('Sender') ? (
-                        key.senderId === this.state.Receiver ?
-                            (
-                                <div className="sender-div">
-                                    <label>{key.senderId}:</label>
-                                    <div>{key.message}</div>
-                                    {/* <MenuItem >{key.senderId}:{key.message}</MenuItem> */}
-                                </div>) : (null)
-                    ) : (null)}
-                    {key.senderId === this.state.Receiver ? (
-                        <div className="receiver-div">
-                            {/* <MenuItem >{key.senderId}:{key.message}</MenuItem> */}
-                            <label> {key.senderId}:</label>
-                            <div>{key.message} </div>
-                        </div>
-                    ) : (null)
+                    {key.senderId === localStorage.getItem('Sender') ?
+                        (
+                            key.senderId === this.state.Receiver ?
+                                (
+                                    <div className="sender-div">
+                                        {/*<div id="heading">{key.senderId}:</div>*/}
+                                        <div>{key.message}</div>
+                                    </div>
+                                ) : (null)
+                        ) : (null)
+                    }
+                    {key.senderId === this.state.Receiver ?
+                        (
+                            <div className="receiver-div">
+                                {/*<div id="heading">{key.senderId}:</div>*/}
+                                <div>{key.message} </div>
+                            </div>
+                        ) : (null)
                     }
                 </div>
             )
@@ -149,73 +219,84 @@ export default class dashBoard extends React.Component {
                 return true;
             }
         })
-        const msgdis = this.state.msg.map((key) => {
-            console.log("key.senderId === this.state.senderId", key.senderId === this.state.senderId);
-            return (
-                <div>
-                    {key.senderId === this.state.Sender ?
-                        (<div className="sender-div">
-                            <label>{key.senderId}:</label>
-                            <div>{key.message}</div>
-                            {/* <MenuItem >{key.senderId}:{key.message}</MenuItem> */}
-                        </div>)
-                        : (<div className="receiver-div">
-                            <label>{key.senderId}:</label>
-                            <div>{key.message}</div>
-                        </div>)
-                    }
-                </div>
-            )
-        })
+        const userDetails = localStorage.getItem('Sender');
         return (
-            <div>
-                <AppBar position="static" align="center"><h1>Welcome TO ChatApp..!!!</h1>
-                    <Button className="grow" color="inherit" onClick={this.handleLogout}>Logout</Button>
-                </AppBar>
-                <div>
-                    <p><h4><u>user</u>:-{localStorage.getItem('Sender')}</h4></p>
-                    <div className="dashboard">
-                        <label><u>Users List:-</u></label>
-                        <div>
-                            {loginUsers}
+            <MuiThemeProvider theme={theme}>
+                <div className="Dashboard">
+                    <AppBar position="static" align="center">
+                        <div id="appBar">
+                            <div>
+                                <marquee behavior="slide" direction="left" scrollamount="20">
+                                    <span id="heading">Welcome to Web Chat..!!!</span>
+                                    <img src={require("../../Assets/images/30.png")} />
+                                </marquee>
+                            </div>
+                            <div>
+                                <IconButton id="userProfileIcon">
+                                    <Tooltip
+                                        title={"User Account  :" + userDetails}>
+                                        <Avatar style={{ width: "35px", height: "35px" }} onClick={this.handleLogout} >
+                                            <img style={{
+                                                width: "-webkit-fill-available",
+                                                height: "-webkit-fill-available"
+                                            }}
+                                                src={require("../../Assets/images/wtsUp.png")}></img>
+                                        </Avatar>
+                                    </Tooltip>
+                                </IconButton>
+                            </div>
                         </div>
+                    </AppBar>
+                    <div className="box">
+                        <div className="usersList">
+                            <div id="users"><u>Users List:-</u></div>
+                            <div>{loginUsers}</div>
+                        </div>
+                        <Card className="msgDisplay">
+                            <div id="users">
+                                <div><u>User:-</u>{userDetails}</div>
+                                <div><u>To:-</u>{this.state.Receiver}</div>
+                            </div>
+                            <div className="chats">
+                                {msg}
+                                {msgdis}
+                            </div>
+                            <div className="input">
+                                <div>
+                                    <TextField
+                                        type="textfield"
+                                        value={this.state.message}
+                                        placeholder="Type a message ................."
+                                        onChange={this.handleMessage}
+                                        variant="filled"
+                                        onKeyPress={this.handleEnter}
+                                        InputProps={{
+                                            disableUnderline: true
+                                        }}
+                                    />
+                                </div>
+                                <div id="icon">
+                                    <IconButton
+                                        color="secondary"
+                                        title="click to send msg"
+                                        onClick={this.handleSubmit}>
+                                        <SendIcon />
+                                    </IconButton>
+                                </div>
+                            </div>
+                        </Card>
                     </div>
-                    {/* Display the messages on screen */}
-                    <div className="msgdisplay">
-                        <center>To:-  {this.state.Receiver}</center>
-                        {msg}
-                        {msgdis}
-                        {/* <MessageDisplay
-                            MsgArray={this.state.MsgArray}
-                            recieverId={this.state.Receiver}
-                        /> */}
-                    </div>
                 </div>
-                <div className="containerButton">
-                    <TextField
-                        type="textfield"
-                        value={this.state.message}
-                        placeholder="Write a Message ................."
-                        onChange={this.handleMessage}
-                        variant="filled"
-                        InputProps={{
-                            disableUnderline: true
-                        }}
-                    />
-                </div>
-                <div>
-                    <Button
-                        id="send"
-                        type="submit"
-                        variant="contained"
-                        color="primary"
-                        title="click on send"
-                        onClick={this.handleSubmit}>
-                        send
-                        </Button>
-                </div>
-            </div>
+            </MuiThemeProvider >
         )
     }
 }
 
+
+
+// <IconButton
+// color="secondary"
+// title="click to send msg"
+// onClick={this.handleSubmit}>
+// <SendIcon />
+// </IconButton>

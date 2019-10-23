@@ -14,7 +14,7 @@
 .registerButton {
     @include flexCenter();
     justify-content: $spaceBetween;
-    width: 80%;
+    // width: 30vw;
     flex-wrap: wrap;
 }
 

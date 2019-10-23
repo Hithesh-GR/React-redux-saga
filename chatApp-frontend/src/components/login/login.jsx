@@ -7,11 +7,7 @@
  *********************************************************************************/
 import React from "react";
 import { userLogin } from "../../Services/userServices";
-import Snackbar from '@material-ui/core/Snackbar';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import Card from '@material-ui/core/Card';
-import { createMuiTheme, MuiThemeProvider } from '@material-ui/core';
+import { createMuiTheme, MuiThemeProvider, Button, TextField, Card, Snackbar } from '@material-ui/core';
 import '../../scss/main.scss';
 const theme = createMuiTheme({
     overrides: {
@@ -19,6 +15,27 @@ const theme = createMuiTheme({
             root: {
                 overflow: "visible"
             },
+        },
+        MuiInputBase: {
+            root: {
+                color: "darkgray",
+                fontFamily: "none"
+            },
+            input: {
+                color: "darkgray",
+                fontFamily: "none"
+            }
+        },
+        MuiFormLabel: {
+            root: {
+                color: "darkgray",
+                fontFamily: "none"
+            }
+        },
+        MuiButton: {
+            root: {
+                textTransform: "none"
+            }
         }
     },
     typography: {
@@ -120,93 +137,97 @@ export default class login extends React.Component {
         this.setState({
             openSnackBar: false
         })
+        document.getElementById('Email').focus();
     };
 
     render() {
         return (
             <MuiThemeProvider theme={theme}>
-            <div className="container">
-                <Card className="containerCard">
-                    <div>
-                        <span id="heading">Web Chat</span>
-                    </div>
-                    <div>
-                        <TextField
-                            required
-                            label="Email"
-                            type="text"
-                            name="Username"
-                            value={this.state.Username}
-                            onChange={this.handleUsernameChange}
-                            // autoComplete="Username"
-                            margin="normal"
-                            variant="outlined"
+                <div className="container">
+                    <Card className="containerCard">
+                        <div>
+                            <marquee behavior="scroll" direction="up" scrollamount="1">
+                                <span id="heading">Web Chat</span>
+                            </marquee>
+                        </div>
+                        <div>
+                            <TextField
+                                required
+                                label="Email"
+                                id="Email"
+                                type="text"
+                                name="Username"
+                                value={this.state.Username}
+                                onChange={this.handleUsernameChange}
+                                // autoComplete="Username"
+                                margin="normal"
+                                variant="outlined"
+                            />
+                        </div>
+                        <div>
+                            <TextField
+                                required
+                                label="Password"
+                                type="password"
+                                value={this.state.Password}
+                                onChange={this.handlePasswordChange}
+                                // autoComplete="Password"
+                                margin="normal"
+                                variant="outlined"
+                            />
+                        </div>
+                        <div className="Button">
+                            <Button
+                                variant="outlined"
+                                color="secondary"
+                                type="submit"
+                                title="click on Registration"
+                                onClick={this.registrationclick}>
+                                Sign up
+                                </Button>
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                type="submit"
+                                title="click on Signin"
+                                onClick={this.handleSubmit}>
+                                Sign in
+                                </Button>
+                        </div>
+                        <div>
+                            <Button
+                                variant="outlined"
+                                color="primary"
+                                type="submit"
+                                title="click on forgotPassword"
+                                // id="signinButton"
+                                onClick={this.forgotPasswordPage}>
+                                forgot password?
+                                </Button>
+                        </div>
+                        <Snackbar
+                            anchorOrigin={{
+                                vertical: 'bottom',
+                                horizontal: 'left',
+                            }}
+                            open={this.state.openSnackBar}
+                            autoHideDuration={6000}
+                            onClose={this.handleSnackClose}
+                            variant="error"
+                            ContentProps={{
+                                'aria-describedby': 'message-id',
+                            }}
+                            message={<span id="heading"> {this.state.snackBarMessage} </span>}
+                            action={[
+                                <div key="undo">
+                                    <Button key="undo" color="primary" size="small" onClick={this.handleSnackClose}>
+                                        UNDO
+                                    </Button>
+                                </div>
+                            ]}
                         />
-                    </div>
-                    <div>
-                        <TextField
-                            required
-                            label="Password"
-                            type="password"
-                            value={this.state.Password}
-                            onChange={this.handlePasswordChange}
-                            // autoComplete="Password"
-                            margin="normal"
-                            variant="outlined"
-                        />
-                    </div>
-                    <div className="Button">
-                        <Button
-                            variant="outlined"
-                            color="secondary"
-                            type="submit"
-                            title="click on Registration"
-                            onClick={this.registrationclick}>
-                            SignUp
-                        </Button>
-                        <Button
-                            variant="contained"
-                            color="primary"
-                            type="submit"
-                            title="click on Signin"
-                            onClick={this.handleSubmit}>
-                            SignIn
-                        </Button>
-                    </div>
-                    <div>
-                        <Button
-                            variant="outlined"
-                            color="primary"
-                            type="submit"
-                            title="click on forgotPassword"
-                            id="signinButton"
-                            onClick={this.forgotPasswordPage}>
-                            forgot Password?
-                    </Button>
-                    </div>
-                    <Snackbar
-                        anchorOrigin={{
-                            vertical: 'bottom',
-                            horizontal: 'left',
-                        }}
-                        open={this.state.openSnackBar}
-                        autoHideDuration={6000}
-                        onClose={this.handleSnackClose}
-                        variant="error"
-                        ContentProps={{
-                            'aria-describedby': 'message-id',
-                        }}
-                        message={<span id="heading"> {this.state.snackBarMessage} </span>}
-                        action={[
-                            <div key="undo">
-                                <Button key="undo" color="primary" size="small" onClick={this.handleSnackClose}>
-                                    UNDO
-                        </Button>
-                            </div>
-                        ]}
-                    />
-                </Card>
-            </div>
+                    </Card>
+                </div>
             </MuiThemeProvider>
         );
     }

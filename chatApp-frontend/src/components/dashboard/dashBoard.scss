@@ -1,0 +1,131 @@
+/****************************************************************************
+ * Purpose : To apply css for login component.
+ * @description
+ * @file : dashboard.scss
+ * @author : Hithesh G R
+ * @version : 1.0
+ * @since : 10/10/2019
+ ****************************************************************************/
+// can also be relative import
+@import '../../scss/color+image.scss';
+@import '../../scss/mixin.scss';
+@import '../../scss/variable.scss';
+
+.sender-div {
+    margin-left: 60%;
+    background-color: antiquewhite;
+    border-radius: 25px;
+    width: 18vw;
+    padding: 10px;
+    margin-bottom: 8px
+}
+
+.receiver-div {
+    background-color: mistyrose;
+    border-radius: 25px;
+    width: 18vw;
+    padding: 10px;
+    margin-bottom: 8px;
+    margin-left: 2%
+}
+
+input[type=textfield] {
+    width: 34vw;
+    padding: 15px;
+}
+
+#icon {
+    // position: absolute;
+    right: 0;
+}
+
+.Dashboard {
+    display: flex;
+    justify-content: $center;
+    width: 100%;
+    height: 100vh;
+    flex-wrap: wrap;
+    background-color: ivory
+}
+
+#appBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: $center;
+    flex-flow: wrap;
+    // width: 100%;
+}
+
+.box {
+    display: flex;
+}
+
+.usersList {
+    border: 0.6em solid lightgray;
+    height: 70vh;
+    width: 25vw;
+}
+
+.msgDisplay {
+    border: 0.6em solid gainsboro;
+    width: 55vw;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.input {
+    display: flex;
+    // position: inherit;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    justify-content: flex-end;
+}
+
+#users {
+    display: flex;
+    justify-content: space-evenly;
+    flex-flow: wrap;
+    margin: 1em
+}
+
+.chats {
+    overflow-y: auto;
+    height: 46vh;
+}
+
+
+
+
+
+
+// .marquee {
+//     // width: 100%;
+//     // margin: 0 auto;
+//     white-space: nowrap;
+//     // overflow: hidden;
+//     // box-sizing: border-box;
+// }
+
+// .marquee span {
+//     display: inline-block;
+//     padding-left: 100%;
+//     /* show the marquee just outside the paragraph */
+//     animation: marquee 15s linear infinite;
+// }
+
+// .marquee span:hover {
+//     animation-play-state: paused
+// }
+
+// /* Make it move */
+// @keyframes marquee {
+//     0% {
+//         transform: translate(0, 0);
+//     }
+//     100% {
+//         transform: translate(-100%, 0);
+//     }
+// }

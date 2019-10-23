@@ -18,30 +18,32 @@
   align-items: $center;
   justify-content: $center;
   background: $image;
-  // background-repeat: no-repeat;
+  background-repeat: no-repeat;
 }
 
-.containerCard{
+.containerCard {
   @include flexCenter();
   @include fontStyle();
-  height: 90vh;
+  height: 95vh;
   width: 70vh;
   flex-direction: column;
   align-items: $center;
   justify-content: $center;
   background: $image;
+  background-repeat: no-repeat;
 }
 
-#heading{
+#heading {
   @include fontStyle();
   color: $redColor;
 }
 
-.Button{
+.Button {
   @include flexCenter();
-  justify-content: $spaceBetween;
+  justify-content: $center;
   flex-wrap: wrap;
-  width: 60%;
+  // width: 25vw;
+  border-bottom: inset
 }
 
 

@@ -16,6 +16,27 @@ const theme = createMuiTheme({
             root: {
                 overflow: "visible"
             },
+        },
+        MuiInputBase: {
+            root: {
+                color: "darkgray",
+                fontFamily: "none"
+            },
+            input: {
+                color: "darkgray",
+                fontFamily: "none"
+            }
+        },
+        MuiFormLabel: {
+            root: {
+                color: "darkgray",
+                fontFamily: "none"
+            }
+        },
+        MuiButton: {
+            root: {
+                textTransform: "none"
+            }
         }
     },
     typography: {
@@ -167,7 +188,9 @@ export default class registration extends React.Component {
                 <div className="container">
                     <Card className="containerCard">
                         <div>
-                            <span id="heading">Web Chat</span>
+                            <marquee behavior="scroll" direction="up" scrollamount="1">
+                                <span id="heading">Web Chat</span>
+                            </marquee>
                         </div>
                         <div>
                             <TextField
@@ -246,7 +269,7 @@ export default class registration extends React.Component {
                                 color="primary"
                                 type="submit"
                                 onClick={this.loginclick}>
-                                SignIn
+                                Sign in
                         </Button>
                             <Button
                                 variant="contained"
@@ -261,7 +284,7 @@ export default class registration extends React.Component {
                                 title="click on submit"
                                 type="submit"
                                 onClick={this.handleSubmit}>
-                                submit
+                                Submit
                         </Button>
                         </div>
                         <Snackbar
