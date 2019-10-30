@@ -24,6 +24,11 @@ const theme = createMuiTheme({
                 height: "fit-content"
             }
         },
+        MuiCard: {
+            root: {
+                backgroundColor: "ivory"
+            },
+        },
         MuiButton: {
             root: {
                 textTransform: "none"
@@ -177,7 +182,7 @@ export default class dashBoard extends React.Component {
                         (
                             <div className="receiver-div">
                                 {/*<div id="heading">{key.senderId}:</div>*/}
-                                <div>{key.message}</div>
+                                <div id="heading">{key.message}</div>
                             </div>
                         )
                     }
@@ -193,7 +198,7 @@ export default class dashBoard extends React.Component {
                                 (
                                     <div className="sender-div">
                                         {/*<div id="heading">{key.senderId}:</div>*/}
-                                        <div>{key.message}</div>
+                                        <div id="heading">{key.message}</div>
                                     </div>
                                 ) : (null)
                         ) : (null)
@@ -202,7 +207,7 @@ export default class dashBoard extends React.Component {
                         (
                             <div className="receiver-div">
                                 {/*<div id="heading">{key.senderId}:</div>*/}
-                                <div>{key.message} </div>
+                                <div id="heading">{key.message} </div>
                             </div>
                         ) : (null)
                     }
@@ -222,7 +227,7 @@ export default class dashBoard extends React.Component {
         const userDetails = localStorage.getItem('Sender');
         return (
             <MuiThemeProvider theme={theme}>
-                <div className="Dashboard">
+                <div className="dashboard">
                     <AppBar position="static" align="center">
                         <div id="appBar">
                             <div>
@@ -232,15 +237,17 @@ export default class dashBoard extends React.Component {
                                 </marquee>
                             </div>
                             <div>
-                                <IconButton id="userProfileIcon">
+                                <IconButton>
                                     <Tooltip
                                         title={"User Account  :" + userDetails}>
                                         <Avatar style={{ width: "35px", height: "35px" }} onClick={this.handleLogout} >
-                                            <img style={{
-                                                width: "-webkit-fill-available",
-                                                height: "-webkit-fill-available"
-                                            }}
-                                                src={require("../../Assets/images/wtsUp.png")}></img>
+                                            <img
+                                                style={{
+                                                    width: "-webkit-fill-available",
+                                                    height: "-webkit-fill-available"
+                                                }}
+                                                src={require("../../Assets/images/images.png")}>
+                                            </img>
                                         </Avatar>
                                     </Tooltip>
                                 </IconButton>
@@ -258,8 +265,8 @@ export default class dashBoard extends React.Component {
                                 <div><u>To:-</u>{this.state.Receiver}</div>
                             </div>
                             <div className="chats">
-                                {msg}
-                                {msgdis}
+                                <div>{msg}</div>
+                                <div>{msgdis}</div>
                             </div>
                             <div className="input">
                                 <div>

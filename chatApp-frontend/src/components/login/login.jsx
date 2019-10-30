@@ -8,7 +8,10 @@
 import React from "react";
 import { userLogin } from "../../Services/userServices";
 import { createMuiTheme, MuiThemeProvider, Button, TextField, Card, Snackbar } from '@material-ui/core';
+import Fab from '@material-ui/core/Fab';
+import Link from '@material-ui/core/Link';
 import '../../scss/main.scss';
+import './login.scss'
 const theme = createMuiTheme({
     overrides: {
         MuiCard: {
@@ -26,6 +29,11 @@ const theme = createMuiTheme({
                 fontFamily: "none"
             }
         },
+        MuiOutlinedInput: {
+            notchedOutline: {
+                borderRadius: 30
+            }
+        },
         MuiFormLabel: {
             root: {
                 color: "darkgray",
@@ -36,11 +44,25 @@ const theme = createMuiTheme({
             root: {
                 textTransform: "none"
             }
-        }
-    },
-    typography: {
-        useNextVariants: true,
-    },
+        },
+        MuiFab: {
+            root: {
+                textTransform: "none"
+            },
+            extended: {
+                width: 220,
+                margin: 6
+            }
+        },
+        MuiLink: {
+            button: {
+                margin: 10
+            }
+        },
+        typography: {
+            useNextVariants: true,
+        },
+    }
 })
 export default class login extends React.Component {
     constructor(props) {
@@ -176,34 +198,31 @@ export default class login extends React.Component {
                                 variant="outlined"
                             />
                         </div>
-                        <div className="Button">
-                            <Button
-                                variant="outlined"
+                        <div>
+                            <Link
+                                component="button"
+                                // variant="body2"
+                                onClick={this.forgotPasswordPage}>
+                                Forgot Password?
+                            </Link>
+                        </div>
+                        <div >
+                            <Fab
+                                variant="extended"
                                 color="secondary"
-                                type="submit"
-                                title="click on Registration"
-                                onClick={this.registrationclick}>
-                                Sign up
-                                </Button>
-                            <Button
-                                variant="contained"
-                                color="primary"
                                 type="submit"
                                 title="click on Signin"
                                 onClick={this.handleSubmit}>
                                 Sign in
-                                </Button>
+                            </Fab>
                         </div>
                         <div>
-                            <Button
-                                variant="outlined"
-                                color="primary"
-                                type="submit"
-                                title="click on forgotPassword"
-                                // id="signinButton"
-                                onClick={this.forgotPasswordPage}>
-                                forgot password?
-                                </Button>
+                            <Link
+                                component="button"
+                                // variant="body2"
+                                onClick={this.registrationclick}>
+                                Sign up for WebChat
+                            </Link>
                         </div>
                         <Snackbar
                             anchorOrigin={{
@@ -232,3 +251,22 @@ export default class login extends React.Component {
         );
     }
 }
+
+
+// <Fab
+//                                 variant="extended"
+//                                 color="primary"
+//                                 type="submit"
+//                                 title="click on forgotPassword"
+//                                 // id="signinButton"
+//                                 onClick={this.forgotPasswordPage}>
+//                                 forgot password?
+//                             </Fab>
+//                             <Fab
+//                                 variant="extended"
+//                                 color="secondary"
+//                                 type="submit"
+//                                 title="click on Registration"
+//                                 onClick={this.registrationclick}>
+//                                 Sign up
+//                             </Fab>
