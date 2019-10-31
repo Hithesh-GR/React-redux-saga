@@ -297,19 +297,21 @@ export default class registration extends React.Component {
                                 title="click on submit"
                                 type="submit"
                                 onClick={this.handleSubmit}>
-                                Submit
+                                Sign up
                             </Fab>
                         </div>
                         <div className="registerButton">
                             <Link
                                 component="button"
                                 // variant="body2"
+                                title="Sign in"
                                 onClick={this.loginclick}>
                                 Sign in
                             </Link>
                             <Link
                                 component="button"
                                 // variant="body2"
+                                title="reset"
                                 onClick={this.resetForm}>
                                 Reset
                             </Link>

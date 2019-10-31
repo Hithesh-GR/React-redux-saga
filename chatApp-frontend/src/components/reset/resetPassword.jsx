@@ -8,6 +8,8 @@
 import React from "react";
 import { resetPassword } from "../../Services/userServices";
 import { createMuiTheme, MuiThemeProvider, Button, TextField, Card, Snackbar } from '@material-ui/core';
+import Fab from '@material-ui/core/Fab';
+import Link from '@material-ui/core/Link';
 import '../../scss/main.scss';
 const theme = createMuiTheme({
     overrides: {
@@ -21,6 +23,11 @@ const theme = createMuiTheme({
                 fontFamily: "none"
             }
         },
+        MuiOutlinedInput: {
+            notchedOutline: {
+                borderRadius: 30
+            }
+        },
         MuiFormLabel: {
             root: {
                 color: "darkgray",
@@ -30,6 +37,32 @@ const theme = createMuiTheme({
         MuiButton: {
             root: {
                 textTransform: "none"
+            }
+        },
+        MuiFab: {
+            root: {
+                textTransform: "none"
+            },
+            extended: {
+                width: 227,
+                height: 50,
+                margin: 6
+            }
+        },
+        MuiLink: {
+            button: {
+                margin: 15
+            }
+        },
+        MuiFormControl: {
+            marginNormal: {
+                marginTop: 12,
+                marginBottom: 12
+            }
+        },
+        MuiTypography: {
+            body2: {
+                fontFamily: "none"
             }
         }
     },
@@ -142,7 +175,7 @@ export default class ResetPassword extends React.Component {
                         <div>
                             <TextField
                                 required
-                                label="New Password"
+                                label="New password"
                                 type="password"
                                 value={this.state.Password}
                                 onChange={this.handlePasswordChange}
@@ -153,7 +186,7 @@ export default class ResetPassword extends React.Component {
                         <div>
                             <TextField
                                 required
-                                label="Confirm New Password"
+                                label="Confirm new"
                                 type="password"
                                 value={this.state.newPassword}
                                 onChange={this.handlenewPasswordChange}
@@ -161,23 +194,24 @@ export default class ResetPassword extends React.Component {
                                 variant="outlined"
                             />
                         </div>
-                        <div className="Button">
-                            <Button
-                                variant="contained"
-                                color="primary"
-                                type="reset"
+                        <div>
+                            <Fab
+                                variant="extended"
+                                color="secondary"
+                                title="click on submit"
+                                type="submit"
+                                onClick={this.handleSubmit}>
+                                Submit
+                            </Fab>
+                        </div>
+                        <div>
+                            <Link
+                                component="button"
+                                variant="body2"
                                 title="click on reset"
                                 onClick={this.resetForm}>
                                 Reset
-                        </Button>
-                            <Button
-                                variant="contained"
-                                color="secondary"
-                                type="submit"
-                                title="click on submit"
-                                onClick={this.handleSubmit}>
-                                Submit
-                        </Button>
+                            </Link>
                         </div>
                         <Snackbar
                             anchorOrigin={{

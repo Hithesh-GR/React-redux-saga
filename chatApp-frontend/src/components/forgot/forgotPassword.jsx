@@ -10,6 +10,7 @@ import React from "react";
 import { forgotPassword } from "../../Services/userServices";
 import { createMuiTheme, MuiThemeProvider, Button, TextField, Card, Snackbar } from '@material-ui/core';
 import Fab from '@material-ui/core/Fab';
+import Link from '@material-ui/core/Link';
 import '../../scss/main.scss';
 const theme = createMuiTheme({
     overrides: {
@@ -23,6 +24,11 @@ const theme = createMuiTheme({
                 fontFamily: "none"
             }
         },
+        MuiOutlinedInput: {
+            notchedOutline: {
+                borderRadius: 30
+            }
+        },
         MuiFormLabel: {
             root: {
                 color: "darkgray",
@@ -32,6 +38,32 @@ const theme = createMuiTheme({
         MuiButton: {
             root: {
                 textTransform: "none"
+            }
+        },
+        MuiFab: {
+            root: {
+                textTransform: "none"
+            },
+            extended: {
+                width: 227,
+                height: 50,
+                margin: 6
+            }
+        },
+        MuiLink: {
+            button: {
+                margin: 10
+            }
+        },
+        MuiFormControl: {
+            marginNormal: {
+                marginTop: 20,
+                marginBottom: 20
+            }
+        },
+        MuiTypography: {
+            body2: {
+                fontFamily: "none"
             }
         }
     },
@@ -114,24 +146,24 @@ export default class ForgotPassword extends React.Component {
                                 variant="outlined"
                             />
                         </div>
-                        <div className="Button">
-                            <Button variant="contained"
-                                color="primary"
-                                type="submit"
-                                title="click on Create Account"
-                                id="signinButton"
-                                onClick={this.register}>
-                                Sign up
-                            </Button>
-                            <Button
-                                variant="contained"
+                        <div>
+                            <Fab
+                                variant="extended"
                                 color="secondary"
+                                title="click on submit"
                                 type="submit"
-                                title="click on Submit"
-                                id="signinButton"
                                 onClick={this.handleSubmit}>
                                 Submit
-                        </Button>
+                            </Fab>
+                        </div>
+                        <div>
+                            <Link
+                                component="button"
+                                variant="body2"
+                                title="click on Create Account"
+                                onClick={this.register}>
+                                Sign up
+                            </Link>
                         </div>
                         <Snackbar
                             anchorOrigin={{
