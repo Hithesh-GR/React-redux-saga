@@ -15,6 +15,7 @@
   @include flexCenter();
   @include fontStyle();
   height: 100vh;
+  width: 100vw;
   align-items: $center;
   justify-content: $center;
   background: $image;
@@ -24,8 +25,8 @@
 .containerCard {
   @include flexCenter();
   @include fontStyle();
-  height: 95vh;
-  width: 70vh;
+  height: 500px;
+  width: 400px;
   flex-direction: column;
   align-items: $center;
   justify-content: $center;

@@ -50,7 +50,8 @@ const theme = createMuiTheme({
                 textTransform: "none"
             },
             extended: {
-                width: 220,
+                width: 227,
+                height: 50,
                 margin: 6
             }
         },
@@ -251,22 +252,3 @@ export default class login extends React.Component {
         );
     }
 }
-
-
-// <Fab
-//                                 variant="extended"
-//                                 color="primary"
-//                                 type="submit"
-//                                 title="click on forgotPassword"
-//                                 // id="signinButton"
-//                                 onClick={this.forgotPasswordPage}>
-//                                 forgot password?
-//                             </Fab>
-//                             <Fab
-//                                 variant="extended"
-//                                 color="secondary"
-//                                 type="submit"
-//                                 title="click on Registration"
-//                                 onClick={this.registrationclick}>
-//                                 Sign up
-//                             </Fab>

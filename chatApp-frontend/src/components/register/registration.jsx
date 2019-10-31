@@ -8,6 +8,8 @@
 import React from "react";
 import { userRegister } from "../../Services/userServices";
 import { createMuiTheme, MuiThemeProvider, Card, TextField, Button, Snackbar } from '@material-ui/core';
+import Link from '@material-ui/core/Link';
+import Fab from '@material-ui/core/Fab';
 import '../../scss/main.scss';
 import './registration.scss';
 const theme = createMuiTheme({
@@ -17,6 +19,12 @@ const theme = createMuiTheme({
                 overflow: "visible"
             },
         },
+        MuiFormControl: {
+            marginNormal: {
+                marginTop: 4,
+                marginBottom: 12
+            }
+        },
         MuiInputBase: {
             root: {
                 color: "darkgray",
@@ -25,6 +33,11 @@ const theme = createMuiTheme({
             input: {
                 color: "darkgray",
                 fontFamily: "none"
+            }
+        },
+        MuiOutlinedInput: {
+            notchedOutline: {
+                borderRadius: 30
             }
         },
         MuiFormLabel: {
@@ -37,11 +50,26 @@ const theme = createMuiTheme({
             root: {
                 textTransform: "none"
             }
+        },
+        MuiFab: {
+            root: {
+                textTransform: "none"
+            },
+            extended: {
+                width: 227,
+                height: 50,
+                margin: 6
+            }
+        },
+        MuiLink: {
+            button: {
+                margin: 10
+            }
+        },
+        typography: {
+            useNextVariants: true,
         }
-    },
-    typography: {
-        useNextVariants: true,
-    },
+    }
 })
 export default class registration extends React.Component {
     constructor(props) {
@@ -251,7 +279,7 @@ export default class registration extends React.Component {
                         <div>
                             <TextField
                                 required
-                                label="Confirm Password"
+                                label="Confirm"
                                 type="password"
                                 name="Password"
                                 value={this.state.confirmPassword}
@@ -262,30 +290,29 @@ export default class registration extends React.Component {
                                 variant="outlined"
                             />
                         </div>
-                        <div className="registerButton">
-
-                            <Button variant="contained"
-                                title="click on login"
-                                color="primary"
-                                type="submit"
-                                onClick={this.loginclick}>
-                                Sign in
-                        </Button>
-                            <Button
-                                variant="contained"
-                                color="primary"
-                                title="click on reset"
-                                type="submit"
-                                onClick={this.resetForm}>
-                                Reset
-                        </Button>
-                            <Button variant="contained"
+                        <div>
+                            <Fab
+                                variant="extended"
                                 color="secondary"
                                 title="click on submit"
                                 type="submit"
                                 onClick={this.handleSubmit}>
                                 Submit
-                        </Button>
+                            </Fab>
+                        </div>
+                        <div className="registerButton">
+                            <Link
+                                component="button"
+                                // variant="body2"
+                                onClick={this.loginclick}>
+                                Sign in
+                            </Link>
+                            <Link
+                                component="button"
+                                // variant="body2"
+                                onClick={this.resetForm}>
+                                Reset
+                            </Link>
                         </div>
                         <Snackbar
                             anchorOrigin={{
