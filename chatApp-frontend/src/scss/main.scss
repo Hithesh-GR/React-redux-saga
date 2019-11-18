@@ -39,24 +39,13 @@
   color: $redColor;
 }
 
-.Button {
-  @include flexCenter();
-  justify-content: $center;
-  flex-wrap: wrap;
-  // width: 25vw;
-  border-bottom: inset
-}
-
-
-
-
-
-
-
-
-
-
-
+// .Button {
+//   @include flexCenter();
+//   justify-content: $center;
+//   flex-wrap: wrap;
+//   // width: 25vw;
+//   border-bottom: inset
+// }
 
 // h1 {
 //   @include fontStyle();
